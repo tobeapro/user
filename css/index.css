@@ -93,7 +93,12 @@ a{text-decoration:none;}
 	color:#fff;
 	text-align:center;	
 	opacity:0;
-	transition: all .2s ease-in-out;	
+	-webkit-transition:all .2s ease-in-out;
+	-o-transition:all .2s ease-in-out;	
+	-ms-transition:all .2s ease-in-out;
+	-moz-transition:all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+			
 }
 .nav-item li:hover .nav-item-text{	
 	opacity:1;
@@ -103,7 +108,15 @@ a{text-decoration:none;}
 	width:80%;
 	left:50%;
 	top:60%;
+	-webkit-transform:translate(-50%,-50%);
+	-o-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	-moz-transform:translate(-50%,-50%);
 	transform:translate(-50%,-50%);
+	-webkit-transition:all .4s ease-in-out;
+	-o-transition:all .4s ease-in-out;	
+	-ms-transition:all .4s ease-in-out;
+	-moz-transition:all .4s ease-in-out;
 	transition: all .4s ease-in-out;
 	opacity:.4;
 	word-break:break-all;
