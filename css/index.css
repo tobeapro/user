@@ -46,7 +46,7 @@ a{text-decoration:none;}
 .main-left{
 	position:fixed;
 	width:200px;
-	height:100%;
+	height:auto;
 	top:40px;
 	left:0;
 	/*background:rgb(255,255,255);*/
@@ -55,14 +55,20 @@ a{text-decoration:none;}
 	font-size:14px;
 	line-height:30px;
 	color:#85939b;
+	background:transparent;
+	border-radius:6px;
 	transition: all .6s;
 }
-.nav-content>.active>a,.nav-content>.active>a:focus{
-	color:#9B59B6;
-	background:transparent;
-}
 .nav-content>li>a:hover {
-    background: rgba(38, 41, 46, .2) !important;
+	color:#fff;
+    background: -webkit-linear-gradient(left, rgb(22, 191, 251) , rgba(146, 192, 224, 0.4)) !important; /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, rgb(22, 191, 251) , rgba(146, 192, 224, 0.4)) !important; /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, rgb(22, 191, 251) , rgba(146, 192, 224, 0.4)) !important; /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, rgb(22, 191, 251) , rgba(146, 192, 224, 0.4)) !important; /* 标准的语法 */
+}
+.nav-content>.active>a,.nav-content>.active>a:focus{
+	color:#f70000 !important;
+	background:transparent;
 }
 .main-right{
 	position:relative;
@@ -140,22 +146,17 @@ a{text-decoration:none;}
 .nav-item img{
 	width:100%;	
 }
-@media screen and (min-width: 1501px){
+@media screen and (min-width: 1301px){
 	.nav-item {
 	    width:1200px;
 	}
 }
-@media screen and (min-width: 1300px) and (max-width:1500px){
-	.nav-item {
-	    width:1000px;
-	}
-}
-@media screen and (min-width: 1092px) and (max-width:1299px){
+@media screen and (min-width: 992px) and (max-width:1300px){
 	.nav-item {
 	    width:800px;
 	}
 }
-@media screen and (min-width: 768px) and (max-width:1091px){
+@media screen and (min-width: 768px) and (max-width:991px){
 	.nav-item {
 	    width:600px;
 	}
@@ -191,7 +192,7 @@ a{text-decoration:none;}
 	-o-transform: scale(0.8);
 	-ms-transform: scale(0.8);
 	transform: scale(0.8);
-	transition: all .4s ease;
+	transition: transform .4s ease;
 	text-align: center;
 	border:2px solid #aaa;	
 }
@@ -217,14 +218,26 @@ a{text-decoration:none;}
 	border-color:#9B59B6;
 	background:#fff;
 }
+.circle-item:hover:after{
+	content:"";
+	position:absolute;
+	left:50%;
+	top:-3px;
+	transform:translateX(-50%);
+	width:50px;
+	height:4px;
+	background:#fff;
+}
 .circle-item .circle-item-icon{
 	display:inline-block;
-	position:relative;	
+	position:absolute;	
 	top:50%;
-	transform:translateY(-50%);
+	left:50%;
+	z-index:10;
+	transform:translate(-50%,-50%);
 	padding:0 16px;
 	transition: all .2s ease;
-	font-size:40px;
+	font-size:30px;
 	color:#aaa;
 	background:transparent;
 }
@@ -239,7 +252,6 @@ a{text-decoration:none;}
 .circle-item:hover .circle-item-icon{
 	top:0;
 	color:#9B59B6;
-	background:#fff;
 }
 @media screen and (max-width:479px){
 	.circle>div {
