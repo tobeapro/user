@@ -274,7 +274,7 @@ a{text-decoration:none;}
 }
 .introduce .introduce-item{
 	margin:20px 0;
-	min-height:120px;
+	min-height:100px;
 	font-size:14px;
 	opacity:0;
 	transform:scale(.6);
