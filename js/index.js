@@ -1,7 +1,21 @@
 $(document).ready(function(){
      new JParticles.particle('#particle',{
-     	resize:false
-     });
+     	resize:false,
+     	range: 100,
+     })
+    var isMobile = navigator.userAgent.match(/(iPhone|iPod|Android|BlackBerry|iPad|IEMobile|Opera Mini)/i), isIE9 = navigator.userAgent.match('MSIE 9.0');
+    if(!isMobile){
+    	$(".introduce-item").removeClass("animate");
+    	scrollLoad()
+    }
+    function scrollLoad(){
+    	var items=$(".introduce-item");
+    	for(var i=0;i<items.length;i++){
+    		if($(window).scrollTop()>items.eq(i).offset().top-$(window).height()*0.9){
+    			items.eq(i).addClass("animate")
+    		}
+    	}
+    }
     $("#nav-content").on("click",".to-content",function(e){
     	var _this=$(this);
     	_this.parent().addClass("active").siblings().removeClass("active")
@@ -16,6 +30,7 @@ $(document).ready(function(){
     	},600)
     })
     $(document).scroll(function(){
+		scrollLoad();
     	if($(this).scrollTop()>300){
     		$("#totop").show()
     	}else{
