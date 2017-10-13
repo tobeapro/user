@@ -30,7 +30,7 @@ a{text-decoration:none;}
 	zoom:1;
 }
 /*粒子背景样式*/
-#particle{width:100%; height:100%; z-index:-999; position:fixed; top:0px; left:0px;}
+#particle{width:100%; height:100%; z-index:-999; position:fixed; top:50px; left:0px;}
 .header{
 	position:fixed;
 	top:0;
@@ -40,17 +40,77 @@ a{text-decoration:none;}
 	height:40px;
 	background:rgba(255,255,255,.6);
 }
+.header .navbar-brand{
+	font-size:24px;
+	color:#000;
+}
+.header .navbar-brand:hover{
+	color:#0d74ed;
+}
+.header .navbar-default{
+	border-radius:0;
+	background:#fff;
+	box-shadow:0 2px 20px #000;
+}
+.header-nav li{
+	padding:0 20px;
+	height:50px;
+	overflow:hidden;
+}
+.header-nav li a{
+	padding:0;
+	transition:all .2s linear;
+	text-align:center;
+}
+.header-nav p{
+	margin:10px 20px;
+	padding:0 6px;
+	height:30px;	
+	line-height:30px;
+	font-size:14px;
+}
+.header-nav p.hover-off{	
+	color:#000;
+}
+.header-nav p.hover-on{
+	/*background:#FFFF00;
+	background:#000;*/
+	color:#0d74ed;
+	/*border-radius:10px;*/
+	border-bottom:2px solid #0d74ed;
+}
+.header-nav li:hover p.hover-off{	
+	text-decoration:underline;
+}
+.header-nav li:hover a{	
+	margin-top:-40px;
+}
+
+.header .navbar-toggle,.header .navbar-toggle.collapsed,.header .navbar-toggle:focus{
+	border:none;
+	background:#fff;
+}
+.header .navbar-toggle .icon-bar{
+	background:#000;
+}
+.header .navbar-toggle:hover{
+	background:#fff;
+}
+.header .navbar-toggle:hover .icon-bar{
+	background:#0d74ed;
+}
 .main{
-	margin-top:40px;
+	margin-top:50px;
 }
 .main-left{
 	position:fixed;
 	width:200px;
 	height:100%;
-	top:40px;
+	top:50px;
 	left:0;
 	bottom:200px;
 	border-radius:6px;
+	border-top-left-radius:0;
 	background:rgba(0,0,0,.6);
 }
 .nav-content>li>a{
@@ -61,6 +121,9 @@ a{text-decoration:none;}
 	font-weight:bold;
 	color:#ccc;	
 	background:transparent;	
+}
+.nav-content>li:nth-child(1)>a{
+	border-top-left-radius:0;
 }
 .nav-content>li>a:hover {
 	color:#fff;
@@ -75,8 +138,8 @@ a{text-decoration:none;}
 	background:transparent;
 }
 .main-right{
-	position:relative;
 	margin-left:200px;
+	margin-top:70px;
 }
 .nav_1{
 	margin:0 auto;
@@ -85,7 +148,7 @@ a{text-decoration:none;}
 	transform:translateX(-50%);
 }
 .nav-item{	
-	margin:0 auto;	
+	margin-top:0 auto;
 }
 .nav-item li a{
 	display:inline-block;
