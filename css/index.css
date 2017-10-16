@@ -145,7 +145,11 @@ a{text-decoration:none;}
 	margin:0 auto;
 	position:relative;
 	left:50%;
-	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%) ;
+	-moz-transform:translateX(-50%) ;
+	-ms-transform:translateX(-50%) ;
+	-o-transform: translateX(-50%);
+	transform:translateX(-50%) ;
 }
 .nav-item{	
 	margin-top:0 auto;
@@ -156,6 +160,10 @@ a{text-decoration:none;}
 	position:relative;
 	top:0;
 	left:50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform:translateX(-50%);
+	-ms-transform:translateX(-50%);
+	-o-transform: translateX(-50%);
 	transform:translateX(-50%);
 	margin:6px;
 	max-width:200px;
