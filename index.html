@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<title>index</title>
 	</head>
-	<body>
+	<body data-spy="scroll" data-target="#navbar-example">
 		<div id="particle">
 		</div>
 		<div class="header">
@@ -50,13 +50,15 @@
 		</div>
 		<div class="main">		
 			<div class="main-left">
-				<ul class="nav nav-content" id="nav-content">
-					<li><a class="to-content" href="#home">Home</a></li>
-					<li><a class="to-content" href="#content1">First</a></li>
-					<li><a class="to-content" href="#content2">Second</a></li>
-					<li><a class="to-content" href="#content3">Third</a></li>
-					<li><a class="to-content" href="#content4">Fourth</a></li>
-				</ul>
+				<nav id="#navbar-example"> 
+					<ul class="nav nav-content" id="nav-content">
+						<li class="active"><a class="to-content" href="#home">Home</a></li>
+						<li><a class="to-content" href="#content1">First</a></li>
+						<li><a class="to-content" href="#content2">Second</a></li>
+						<li><a class="to-content" href="#content3">Third</a></li>
+						<li><a class="to-content" href="#content4">Fourth</a></li>
+					</ul>
+				</nav>
 			</div>
 			<div class="main-right">
 				<div class="nav_1 clearFl" id="content1">

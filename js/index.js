@@ -27,7 +27,7 @@ $(document).ready(function(){
     	}	
     	$("body,html").animate({
     		scrollTop:top
-    	},600)
+    	},200)
     })
     $(document).scroll(function(){
 		scrollLoad();
