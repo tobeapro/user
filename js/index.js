@@ -45,4 +45,8 @@ $(document).ready(function(){
     		_this.hide()
     	})
     })
+    $("#article-content").on("click",".article-item-title",function(){
+    	var aitem=$(this).parent();
+    	aitem.toggleClass("active").siblings().removeClass("active")
+    })
 })

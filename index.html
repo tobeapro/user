@@ -14,7 +14,7 @@
 	</head>
 	<body data-spy="scroll" data-target="#navbar-example">
 		<div id="particle">
-		</div>
+		</div>	
 		<div class="header">
 			<nav class="navbar navbar-default">
 		       <div class="container-fluid">
@@ -113,7 +113,148 @@
 							</a>					
 						</li>
 					</ul>	
-				</div>			
+				</div>		
+				<div class="article-part">
+					<div class="article-header">
+					</div>
+					<div class="article-content" id="article-content">
+						<div class="article-item">
+							<div class="article-item-title">
+								<h4>原型继承补充（prototype和__proto__详解）<i class="fa fa-angle-right" aria-hidden="true"></i></h4>
+								<p><span>作者:</span><a href="https://juejin.im/user/582bbe352e958a0069afe468" target="_blank">前端一小卒</a></p>
+								<p><span>原文:</span><a href="https://juejin.im/post/59156dda44d904006c4a107b" target="_blank">原型继承补充（prototype和__proto__详解）</a></p>	
+							</div>
+							<div class="article-item-detail">
+								<pre class="article-item-js">
+//创建一个构造函数。
+function Fruit(){};
+//输出其原型对象：
+console.log(Fruit.prototype);
+								</pre>
+								<div class="article-item-img">
+									<img src="https://dn-mhke0kuv.qbox.me/b694f7ce856f14054d36.png?imageView2/0/w/1280/h/960/ignore-error/1">
+									<p>Fruit.prototype1.png</p>
+								</div>
+								<pre class="article-item-js">
+//如果手动设置其prototype属性的话，那么将改变其原型对象
+Fruit.prototype = {
+    getName : function(){
+        return this.name;
+    },
+    name : 'fruit',
+};
+//再次输出其原型对象，这时候就发生了点奇怪的事情了
+console.log(Fruit.prototype);
+								</pre>
+								<div class="article-item-img">
+									<img src="https://dn-mhke0kuv.qbox.me/0eb1c4bb31db60add2ca.png?imageView2/0/w/1280/h/960/ignore-error/1">
+									<p>Fruit.prototype1.__proto__.png</p>
+								</div>
+								<div class="article-item-text">
+									在Fruit.prototype中，只有其的__proto__拥有constructor属性，所以是不是可以认为其Fruit.prototype.constructor===Fruit.prototype.__proto__.constructor？事实上，我们可以认为二者指向同一个构造函数。由于重写了Fruit的原型对象，JavaScript引擎不能在显式原型中找到constructor属性，那么它将通过隐式原型链查找，找到了Fruit.prototype.__proto__的constructor属性。如果重写原型就会导致constructor属性的更改，那么在实际开发的时候就会发生指向不明的错误，如下所示：
+								</div>
+								<pre class="article-item-js">
+function Fruit(){}
+function Animal(){}
+Animal.prototype = new Fruit();
+var apple = new Fruit();
+var cat = new Animal();
+alert(apple.constructor===cat.constructor);//true
+//apple和cat明明属于两个不同构造器产生的实例，但是它们的constructor属性指向同一构造器产生的实例
+								</pre>
+								<div class="article-item-text">
+									所以在修改构造函数的原型时候，应该修正该原型对象的constructor属性，通常修正方法有两种：
+								</div>
+								<pre class="article-item-js">
+//第一种方法：当其原型修改时，手动更改其原型的```constructor```属性的指向。
+Animal.prototype.constructor = Animal;
+//第二种方法：保持原型的构造器属性，在子类构造器函数内初始化实例的构造器属性，
+function Animal(){
+    this.constructor = arguments.callee;
+    //或者可以：this.constructor = Animal;
+}
+								</pre>
+								<div class="article-item-text">
+									在网上对constructor属性的作用有着许多不同的看法，有的人认为其是为了将实例的构造器的原型对象更好的暴露出来，但是我个人认为constructor属性在整个原型继承中其实是没有起到什么作用的，甚至在JS语言中也是如此，因为其可读写，所以其未必指向对象的构造函数，像上面的保持原型构造属性不变，只是从编程的习惯出发，让对象的constructor属性指向其构造函数。
+									说完了构造函数的prototype属性，由于我在上文就已经介绍过了普通的函数与构造函数并没有什么本质的区别，所以现在我们开始将目光放在一些特殊的函数上面。									
+									Function是JavaScript一个特殊的构造函数，在JS中，每一个函数都是其对象（Object也是）。在控制台输出下Function.prototype得到这样一个函数function () { [native code] }。再用
+								</div>
+								<pre class="article-item-js">
+console.log(Function.prototype);
+//function () { [native code] }
+//用typeof判断下其类型
+console.log(typeof Function.prototype)//function
+//既然其是function类型的，那么因为所有的函数都有prototype对
+//象，所以其肯定就有prototype属性了，那么我们现在可以输出看看了，但是神奇的事情发生了。
+console.log(Function.prototype.prototype)//undefined
+//其居然输出了undefined，这发生了什么事情？？
+								</pre>
+								<div class="article-item-text">
+									翻阅了许多资料，终于让我找到了其原因所在。而这与JavaScript的底层有关了。在上篇文章，我们就说到了Object.prototype处于原型链的顶端，而JavaScript在Object.prototype的基础上又产生了一个Function.prototype对象，这个对象又被称为[Function:Empty](空函数，其是一个不同于一般函数的函数对象)。随后又以该对象为基础打造了两个构造函数，一个即为Function,另一个为Object。意不意外，惊不惊喜！但是看到下面，你又会刚到更加意外的。所以，在下面的代码如此显示，你就不会感到意外了。
+								</div>
+								<pre class="article-item-js">
+console.log(Object.__proto__ === Function.prototype);//true
+//Object的__proto__属性指向Function.prototype。这又说明Object这个构造器是从Function的原型生产出来的。
+console.log(Object.constructor === Function);//true
+//Object.constructor属性指向了它的构造函数Function
+//看着上面的代码，是不是能够得出Object是一个Function的实例对象的结论。
+								</pre>
+								<div class="article-item-text">
+									没错，Object这个构造函数是Function的一个实例(因为Object是继承自Function.prototype，甚至可以这样说，所有的构造函数都是 Function的一个实例。
+
+									__proto__
+
+									谈完了prototype属性，现在我们开始来看看__proto__属性，在上篇文章中，我们就已经提到了__proto__指向的是当前对象的原型对象。由于在JS内部，__proto__属性是为了保持子类与父类的一致性，所以在对象初始化的时候，在其内部生成该属性，并拒绝用户去修改该属性。尽管目前我们可以手动去修改该属性，但是为了保持这种一致性，尽量不要去修改该属性。废话不多说，我们来看看一些示例：
+								</div>
+								<pre class="article-item-js">
+//一个普通的函数
+function Fruit(){};
+console.log(Fruit.__proto__);//function(){ [native code] }
+//貌似有点眼熟，像是上面的空函数，动手试试
+console.log(Fruit.__proto__===Function.prototype)//true
+//恩，有点大惊小怪了，对象的__proto__就是指向构造该对象的构造函数的原型对象。
+//如果二者不等的话，那就出事了。
+//现在来看看一个构造函数构造出来的对象
+var apple = new Fruit();
+console.log(apple.__proto__);
+//其指向了Fruit.prototype，但是如果Fruit.prototype该变量，那会怎么样呢？
+Fruit.prototype = {};
+console.log(apple.__proto__);
+//貌似跟上面并没有多大的变化，但是别急，我们接下来看。
+var banana = new Fruit();
+console.log(banana.__proto__);
+//{};这就对了，对象的__proto__就是指向原型对象的，当构造函数的原型对象改变的时候，其也将改变。
+//至于为什么apple和banana的__proto__属性会变化，这就涉及到内存分配的问题了，在这里就不再展开。
+								</pre>
+								<div class="article-item-text">
+									由于每个对象都将拥有一个__proto__属性，那么apple.__proto__必然拥有__proto__属性，那就让我们一起探究下吧。
+								</div>
+								<pre class="article-item-js">
+function Animal(){};
+var dog = new Animal();
+console.log(dog.__proto__.__proto__)
+//Object {__defineGetter__: function, __defineSetter__: function, hasOwnProperty: function, __lookupGetter__: function, __lookupSetter__: function…}
+//是不是很眼熟，这跟上面的Object.prototypey一模一样，输出看看
+console.log(dog.__proto__.__proto__==Object.prototype) //true
+								</pre>
+								<div class="article-item-text">
+									其实仔细分析下就应该知道这样的指向,dog.__proto__指向Animal.prototype，而Animal.prototype其实是一个对象实例，由Object所构造出来的，自然Animal.prototype.__proto__指向Object.prototype。看完了对象的__proto__属性，现在来看下函数的相关属性。
+								</div>
+								<pre class="article-item-js">
+console.log(Animal.__proto__===Function.prototype)//true;
+console.log(Animal.__proto__.__proto__===Object.prototype)//true;
+console.log(Animal.__proto__.__proto__.__proto__)//null
+								</pre>
+								<div class="article-item-text">
+									可能有人会对Animal.__proto__.__proto__.__proto__===null产生疑惑，有人也是因为这样而认为在整个原型链的顶端就是null,其实不然，因为null压根就没有任何属性，自然对象和函数就不能从中继承到什么东西了。
+									其实在JavaScript内部，当实例化一个对象的时候，实例对象的__proto__指向了构造函数的prototype属性，以此来继承构造函数prototype上所有属性和方法。
+									
+									总结：其实如果能够缕清__proto__和prototype二者的关系，那么关于原型继承就很简单了。每个对象都拥有了__proto__属性，所有对象的__proto__属性串联起了一条原型链，连接了拥有继承关系的对象，这条原型链的终点指向了Object.prototype。
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="circle clearFl" id="content2">
 					<div class="col-xs-6 col-sm-4 col-lg-2">
 						<div class="circle-item">
