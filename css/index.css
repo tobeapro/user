@@ -406,23 +406,26 @@ a{text-decoration:none;}
 }
 /*文章区*/
 .article-content{
-	background:rgba(255,255,255,.6);
+	
 }
 .article-item{
 	max-width:1000px;
 	margin:0 auto;
 	border:1px solid #ddd;
-	border-radius:4px;
 	font-size:12px;
 	background:#fff;
+}
+.article-item:not(:first-child){
+	border-top:none;
 }
 .article-item>.article-item-title{
 	padding:6px;
 	background:#eee;
 }
 .article-item>.article-item-title>h4{
-	font-size:14px;
-	line-height:26px;
+	font-size:13px;
+	line-height:20px;
+	cursor:default;
 }
 .article-item>.article-item-title>h4>.fa{
 	margin-left:20px;
@@ -433,6 +436,9 @@ a{text-decoration:none;}
 	-ms-transition: all .2s linear;
 	-o-transition: all .2s linear;
 	transition: all .2s linear;
+}
+.article-item.active>.article-item-title{
+	background:rgba(255,253,0,.4);
 }
 .article-item.active>.article-item-title>h4>.fa{
 	-webkit-transform: rotate(90deg);
@@ -453,7 +459,6 @@ a{text-decoration:none;}
 }
 .article-item>.article-item-detail{
 	display:none;
-	margin-top:20px;
 	-webkit-transition: .6s all linear;
 	-moz-transition: .6s all linear;
 	-ms-transition: .6s all linear;
@@ -468,8 +473,7 @@ a{text-decoration:none;}
 	text-indent:20px;
 }
 .article-item>.article-item-detail>.article-item-js{	
-	padding-left:20px;
-	padding-top:20px;
+	padding:10px 20px;
 	text-align:left;
 	font-size:12px;
 	background:#ddd;
@@ -478,6 +482,10 @@ a{text-decoration:none;}
 	padding:10px;
 	text-align:center;
 	background:#fff;
+}
+.article-item>.article-item-detail>.article-item-img>img{
+	max-width:100%;
+	width:auto;
 }
 .article-item>.article-item-detail>.article-item-img>p{
 	margin-top:10px;

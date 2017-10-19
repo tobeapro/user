@@ -45,8 +45,43 @@ $(document).ready(function(){
     		_this.hide()
     	})
     })
-    $("#article-content").on("click",".article-item-title",function(){
+    $("#article-content").on("click",".article-item-title",function(e){
+    	var e=e||window.event;
+    	if(e.target.tagName==="A"){
+    		e.stopPropagation();
+    		return
+    	}  	
     	var aitem=$(this).parent();
     	aitem.toggleClass("active").siblings().removeClass("active")
+    })
+    $.get("css-data.json",function(res){
+    	var data=res.data;
+    	var content="";
+    	for(var i=0;i<data.length;i++){
+    		content+="<div class='article-item'>",
+			content+="<div class='article-item-title'>",
+			content+="<h4>"+data[i].title+"<i class='fa fa-angle-right' aria-hidden='true'></i></h4>";
+			if(data[i].isOriginal){
+				content+="<p>——作者:"+data[i].author+"</p>";
+			}else{
+				content+="<p><span>——作者:</span><a href='"+data[i].authorLink+"' target='_blank'>"+data[i].author+"</a></p>",
+				content+="<p><span>——原文:</span><a href='"+data[i].articleLink+"' target='_blank'>"+data[i].title+"</a></p>";
+			}
+			content+="</div>",
+			content+="<div class='article-item-detail'>";
+			for(var j=0;j<data[i].contentData.length;j++){
+				switch(data[i].contentData[j].type){
+					case "js":content+="<pre class='article-item-js'>"+data[i].contentData[j].content+"</pre>";
+					break;
+					case "img":content+="<div class='article-item-img'><img src='"+data[i].contentData[j].content+"'><p>"+data[i].contentData[j].explain+"</p></div>";
+					break;
+					case "text":content+="<div class='article-item-text'>"+data[i].contentData[j].content+"</div>";
+					break;
+					default: break;
+				}
+			}
+			content+="</div></div>";
+    	}
+    	$("#article-content").append(content)
     })
 })

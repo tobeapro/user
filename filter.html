@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			div{margin-bottom:20px;}
+			img{width:200px;height:160px;}
+			.hui img{
+				-ms-filter: grayscale(1);
+				filter:grayscale(1) ;
+			}
+			.he img{
+				-ms-filter: sepia(1);
+				filter: sepia(1);;
+			}
+			.baohe img{
+				-ms-filter: saturate(3);
+				filter: saturate(3);
+			}
+			.sxfz img{
+				-ms-filter: hue-rotate(90deg);
+				filter: hue-rotate(90deg);
+			}
+			.fs img{
+				-ms-filter: invert(1);
+				filter: invert(1);
+			}
+			.opacity img{
+				-ms-filter: opacity(.6);
+				filter: opacity(.6);
+			}
+			.brightness img{
+				-ms-filter: brightness(.6);
+				filter: brightness(.6);;
+			}
+			.contrast img{
+				-ms-filter: contrast(2);
+				filter: contrast(2);
+			}
+			/*模糊*/
+			.blur img{
+				-ms-filter: blur(6px);
+				filter: blur(6px);
+			}
+			/*阴影*/
+			.custom img{
+				-ms-filter: drop-shadow(5px 5px 5px #aaa);
+				filter: drop-shadow(5px 5px 5px #aaa);
+			}
+		</style>
+	</head>
+	<body>
+		<div style="text-align: center;margin-left:10px;">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 hui">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 he">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 baohe">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 sxfz">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 fs">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 opacity">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 brightness">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 contrast">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 blur">
+			<img src="img/3.png">
+		</div>
+		<div class="col-sm-4 col-md-3 col-lg-2 custom">
+			<img src="img/3.png">
+		</div>
+	</body>
+</html>
