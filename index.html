@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<title>index</title>
+		<title>index</title>		
 	</head>
 	<body data-spy="scroll" data-target="#navbar-example">
 		<div id="particle">
@@ -411,6 +411,15 @@ console.log(Animal.__proto__.__proto__.__proto__)//null
 		<div class="totop" id="totop">
 			<i class="fa fa-hand-o-up" aria-hidden="true"></i>
 		</div>
+		<script>
+			var loading=function(){
+				var loading=document.createElement("div");
+//				loading.setAttribute("class","loading");
+				loading.className="loading";
+				document.body.appendChild(loading);
+			}
+			loading();
+		</script>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<!-- 推荐：根据需要加载，引入基础框架 -->
