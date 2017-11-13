@@ -182,7 +182,7 @@ a{text-decoration:none;}
 .main{
 	margin-top:50px;
 }
-.main-left{
+/*.main-left{
 	position:fixed;
 	width:200px;
 	height:100%;
@@ -207,18 +207,18 @@ a{text-decoration:none;}
 }
 .nav-content>li>a:hover {
 	color:#fff;
-    background: -webkit-linear-gradient(left, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important; /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(right, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important; /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(right, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important; /* Firefox 3.6 - 15 */
-    background: linear-gradient(to right, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important; /* 标准的语法 */
+    background: -webkit-linear-gradient(left, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important;
+    background: -o-linear-gradient(right, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important; 
+    background: -moz-linear-gradient(right, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important;
+    background: linear-gradient(to right, rgb(59, 123, 240) , rgba(26,133,245,0.6)) !important; 
 }
 .nav-content>.active>a,.nav-content>.active>a:focus{
 	text-shadow:2px 2px 6px #ffff00;
 	color:#ffff00 !important;
 	background:transparent;
-}
+}*/
 .main-right{
-	margin-left:200px;
+	/*margin-left:200px;*/
 	margin-top:70px;
 }
 .nav_1{
