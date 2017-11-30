@@ -4,6 +4,7 @@ $(document).ready(function(){
     	$(".introduce-item").removeClass("animate");
     	scrollLoad()
     }
+    $("[data-toggle='tooltip']").tooltip();
     window.onload=actionBall
     window.onresize=function(){
     	clearInterval(timer)

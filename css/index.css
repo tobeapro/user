@@ -453,6 +453,9 @@ a{text-decoration:none;}
 	margin-bottom:20px;
 	text-align:center;
 }
+.footer-link{
+	display: inline-block;
+}
 .footer-link .fa{
 	transition:all .2s linear;
 	padding:8px;
