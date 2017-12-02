@@ -4,6 +4,7 @@ $(document).ready(function(){
     	$(".introduce-item").removeClass("animate");
     	scrollLoad()
     }
+    $(document).loading("show");
     $("[data-toggle='tooltip']").tooltip();
     window.onload=actionBall
     window.onresize=function(){
@@ -143,6 +144,6 @@ $(document).ready(function(){
 			content+="</div></div>";
     	}
     	$("#article-content").append(content);
-    	$(".loading").remove();
+    	$(document).loading("hide");
     })
 })
